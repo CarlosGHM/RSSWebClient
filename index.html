@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="rssClient">
+	<head>
+	<meta charset="utf-8">
+	<title>RSS Podcast Web Client</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/app.min.css" />
+	</head>
+	<body ng-cloak>
+		<div id="mainContainer" class="container">
+			<div ng-controller="FeedBackController">
+				<div class="row">
+					<div class="col-lg-10 col-lg-offset-1">
+						<form name="rssPodcastFeedForm">
+							<div class="input-group">
+								<input id="rssUrl" type="text" class="form-control" required ng-model="feedbackUrl" ng-disabled="requestOnProcess" placeholder="Ingresa la URL del RSS de tu podcast..." />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-primary" ng-click="getPodcastFeedback()" ng-disabled="rssPodcastFeedForm.$invalid || requestOnProcess">
+										Agregar
+									</button>
+								</span>
+							</div>
+						</form>
+					</div>
+					<img class="spinner" src ='./img/spinner-icon.gif' ng-show='requestOnProcess'/>
+				</div>
+				<div class="row">
+					<div class="col-lg-10 col-lg-offset-1" id="messageContainer"></div>
+				</div>
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-lg-6">
+						<input type="text" ng-model="query.title" class="form-control" ng-show="podcastList.length>0" placeholder="Filtra tus podcast por nombre..."/>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="panel-group" role="tablist">
+						  <div class="panel panel-default" ng-repeat="podcast in podcastList">
+						    <div class="panel-heading" role="tab" id="{{'heading'+podcast.index}}">
+						      <h4 class="panel-title">
+						        <a role="button" data-toggle="collapse" href="{{'#collapse'+podcast.index}}" aria-expanded="true" aria-controls="collapseOne">
+						          <strong>{{podcast.title}}</strong>
+						          <br/>
+						          <small>{{podcast.author}}</small>
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="{{'collapse' + podcast.index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading'+podcast.index}}">
+						        <ul class="list-group">
+									<li class="list-group-item play" ng-repeat="entry in podcast.chapters | filter:query" ng-click="playPodcast(entry, $event)">
+										{{entry.title}} 
+									</li>
+								</ul>
+						    </div>
+						  </div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div id="newElementDiv" class="row"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="./lib/jquery.min.js"></script>
+	<script type="text/javascript" src="./lib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="./js/app.min.js"></script>
+</html>
