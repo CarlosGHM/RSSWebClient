@@ -13,19 +13,21 @@ rssClientApp.factory('feedbackService', ['$q', '$http', function($q, $http){
 	function parsePodcastObject(podcastRawObject){
 		var elements = [];
 		podcastRawObject.item.forEach(function(e, index){
-			elements.push({
-					title:e.title,
-					description:e.description,
-					pubDate:e.pubDate,
-					url:e.enclosure.url,
-					type:e.enclosure.type
-			});	
+			var o = {
+					url:(e.enclosure !== undefined && e.enclosure.url !== undefined) ? e.enclosure.url : '',
+					type:(e.enclosure.type !== undefined) ? e.enclosure.type : 'Sin tipo',
+					title:(e.title !== undefined) ? e.title : 'Sin titulo',
+					description:(e.description !== undefined) ? e.description : 'Sin descripción',
+					pubDate:(e.pubDate !== undefined) ? e.pubDate : 'Sin fecha de publicación'
+			};
+			if(o.url !== ''){
+				elements.push(o);
+			}
 		});
 		return {
 			index:0,
-			title:podcastRawObject.title,
-			author:podcastRawObject.author,
-			imageUrl:podcastRawObject.image[0].href,
+			title:(podcastRawObject.title !== undefined) ? podcastRawObject.title : 'Sin titulo',
+			author:(podcastRawObject.author !== undefined) ? podcastRawObject.author : 'Autor desconocido',
 			chapters:elements
 		}
 	}
