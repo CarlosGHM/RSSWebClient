@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PodcastForm from '../../components/PodcastForm/PodcastForm';
+import PodcastCard from '../../components/PodcastCard/PodcastCard';
 
 class Home extends Component {
 
@@ -21,7 +22,7 @@ class Home extends Component {
             return null;
         }
         return this.state.feeds.map((feed, i) => {
-            return <div key={i}>{feed.general.title}</div>
+            return <PodcastCard key={i} feed={feed} />
         });
 
     }
@@ -30,7 +31,9 @@ class Home extends Component {
         return (
             <div>
                 <PodcastForm feedLoaded={this.addFeed} />
-                {this.renderFeeds()}
+                <div style={{display:'flex', justifyContent:'flex-start'}}>
+                    {this.renderFeeds()}
+                </div>
             </div>
         );
     }
