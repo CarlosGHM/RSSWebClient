@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import jsonp from 'jsonp';
+import { fetchPodcast } from '../../modules/home/actions';
 
 class PodcastForm extends Component {
 
@@ -15,20 +16,8 @@ class PodcastForm extends Component {
   }
 
   onClickSearchButton(e) {
-    console.log(`Getting Podcast ${this.state.rssUrl}`);
-    const url = `https://api.rss2json.com/v1/api.json?rss_url=${this.state.rssUrl}`;
-    jsonp(url, null, function (err, data) {
-      if (err) {
-        console.error(err.message);
-      } else {
-        const feed = {
-          general: data.feed,
-          items: data.items,
-        }
-        this.setState({rssUrl: ''});
-        this.props.feedLoaded(feed);
-      }
-    }.bind(this));
+    this.props.fetchPodcast(this.state.rssUrl);
+    this.setState({ rssUrl: '' });
   }
 
   onChangeRSSUrlInput(e) {
@@ -48,4 +37,16 @@ class PodcastForm extends Component {
   }
 }
 
-export default PodcastForm;
+const mapStateToProps = (state) => ({
+  
+});
+
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPodcast: (url) => {
+    dispatch(fetchPodcast(url));
+  }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PodcastForm);

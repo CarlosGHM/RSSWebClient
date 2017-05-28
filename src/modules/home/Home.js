@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PodcastForm from '../../components/PodcastForm/PodcastForm';
 import PodcastCard from '../../components/PodcastCard/PodcastCard';
 
 class Home extends Component {
 
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             feeds: []
         }
-        this.addFeed = this.addFeed.bind(this);
-    }
-    
-    addFeed(feed) {
-        const newListFeed = this.state.feeds.concat([feed]);
-        this.setState({ feeds: newListFeed});
     }
 
-    renderFeeds(){
-        if(this.state.feeds.length === 0){
+    renderFeeds() {
+        if (this.props.podcastList.length === 0) {
             return null;
         }
-        return this.state.feeds.map((feed, i) => {
+        return this.props.podcastList.map((feed, i) => {
             return <PodcastCard key={i} feed={feed} />
         });
 
@@ -30,13 +25,23 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <PodcastForm feedLoaded={this.addFeed} />
-                <div style={{display:'flex', justifyContent:'flex-start'}}>
-                    {this.renderFeeds()}
+                <PodcastForm />
+                <div style={{ display: 'flex', flexDirection: "row", justifyContent: 'space-around', alignItems: 'stretch' }}>
+                    <div style={{ width: '100px' }}>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: "row", flexWrap: "wrap", justifyContent: 'flex-start' }}>
+                        {this.renderFeeds()}
+                    </div>
+                    <div style={{ width: '100px' }}>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    podcastList: state.podcast.podcastList
+});
+
+export default connect(mapStateToProps)(Home);
