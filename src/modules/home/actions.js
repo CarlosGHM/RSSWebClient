@@ -9,8 +9,9 @@ export const fetchPodcast = (url) => (dispatch, getState) => {
     if (err) {
       console.error(err.message);
     } else {
+      console.warn(data);
       const podcast = {
-        general: data.feed,
+        ...data.feed,
         items: data.items,
       };
       dispatch(setPodcast(podcast));

@@ -14,7 +14,7 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" component={Home} />
-            <Route path="/podcast/:name" component={PodcastDetail} />
+            <Route path="/podcast/:title" component={PodcastDetail} />
           </div>
         </Router>
       </div>

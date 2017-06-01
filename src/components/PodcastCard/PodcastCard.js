@@ -15,8 +15,8 @@ class PodcastCard extends Component {
     const { feed } = this.props;
     return (
       <Card style={{ width: '20%', margin: '15px 15px' }}>
-        <CardMedia overlay={<Link to={`/podcast/${feed.general.title}`}> <CardTitle title={feed.general.title} /></Link>}>
-          <img alt={feed.general.title} src={feed.general.image} style={{ maxWidth: '100%', height: 'auto' }} />
+        <CardMedia overlay={<Link to={`/podcast/${feed.title}`}> <CardTitle title={feed.title} /></Link>}>
+          <img alt={feed.title} src={feed.image} style={{ maxWidth: '100%', height: 'auto' }} />
         </CardMedia>
       </Card>
     )

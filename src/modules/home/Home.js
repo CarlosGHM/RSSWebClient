@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PodcastForm from '../../components/PodcastForm/PodcastForm';
 import PodcastCard from '../../components/PodcastCard/PodcastCard';
+import { getAllPodcast } from './selectors';
 
 class Home extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            feeds: []
-        }
-    }
 
     renderFeeds() {
         if (this.props.podcastList.length === 0) {
@@ -41,7 +35,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    podcastList: state.podcast.podcastList
+    podcastList: getAllPodcast(state)
 });
 
 export default connect(mapStateToProps)(Home);
