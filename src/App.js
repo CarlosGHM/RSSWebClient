@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './modules/home/Home';
-import PodcastDetail from './modules/podcastDetail/PodcastDetail';
+import PodcastExplorer from './modules/podcastExplorer';
+import Core from './modules/core';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+
+
+const { Explorer } = PodcastExplorer.components;
+const { PodcastDetail } = Core.components;
 
 class App extends Component {
   render() {
@@ -13,7 +17,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Explorer} />
             <Route path="/podcast/:title" component={PodcastDetail} />
           </div>
         </Router>

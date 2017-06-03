@@ -1,4 +1,4 @@
-import { ADD_PODCAST } from './actionTypes';
+import { ADD_PODCAST } from './constants';
 
 const initialState = {
   podcastList: []

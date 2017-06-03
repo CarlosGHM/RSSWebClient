@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getPodcastByTitle } from '../home/selectors';
+// import { getPodcastByTitle } from '../home/selectors';
+import PodcastExplorer from '../../../podcastExplorer';
+
+const { getPodcastByTitle } = PodcastExplorer.selectors;
 
 class PodcastDetail extends Component {
   render() {

@@ -1,4 +1,4 @@
-import * as actions from './actionTypes';
+import * as actions from './constants';
 import jsonp from 'jsonp';
 
 const setPodcast = (podcast) => ({ type: actions.ADD_PODCAST, podcast });
