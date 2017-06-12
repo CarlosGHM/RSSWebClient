@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import PodcastCard from '../../../core/components/PodcastCard/PodcastCard';
+import Core from '../../../core';
+
+const { PodcastCard } = Core.components;
 
 class PodcastList extends Component {
 

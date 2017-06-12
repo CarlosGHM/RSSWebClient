@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import PodcastExplorer from './modules/podcastExplorer';
-import Core from './modules/core';
+import PodcastPlayer from './modules/podcastPlayer';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
 
 
-const { Explorer } = PodcastExplorer.components;
-const { PodcastDetail } = Core.components;
+const { Explorer, PodcastDetailContainer } = PodcastExplorer.components;
+const { Player } = PodcastPlayer.components;
 
 class App extends Component {
   render() {
@@ -18,9 +18,10 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" component={Explorer} />
-            <Route path="/podcast/:title" component={PodcastDetail} />
+            <Route path="/podcast/:title" component={PodcastDetailContainer} />
           </div>
         </Router>
+        <Player />
       </div>
     );
   }

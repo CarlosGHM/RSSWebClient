@@ -6,8 +6,8 @@ import * as selectors from './selectors';
 import PodcastForm from './components/PodcastForm/PodcastForm';
 import PodcastList from './components/PodcastList/PodcastList';
 import Explorer from './components/Explorer/Explorer';
-import Dummy from './components/Dummy/Dummy';
+import PodcastDetailContainer from './components/PodcastDetailContainer/PodcastDetailContainer';
 
-const components = { PodcastForm, PodcastList, Explorer, Dummy };
+const components = { PodcastForm, PodcastList, Explorer, PodcastDetailContainer };
 
 export default { actions, components, constants, reducer, selectors };

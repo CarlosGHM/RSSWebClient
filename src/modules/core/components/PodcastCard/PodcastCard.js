@@ -23,8 +23,4 @@ class PodcastCard extends Component {
   }
 }
 
-// PodcastCard.propTypes = {
-//   feed: PropTypes.shape,
-// }
-
 export default PodcastCard;

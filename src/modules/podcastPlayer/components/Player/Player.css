@@ -1,0 +1,9 @@
+.playerContainer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+audio {
+    background-color: #95B9C7;
+}
